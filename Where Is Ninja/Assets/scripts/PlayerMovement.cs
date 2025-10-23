@@ -27,11 +27,9 @@ public class PlayerMovement3D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Zamiana kierunku wejœcia na orientacjê izometryczn¹
-        Vector3 isoDir = inputDir;
 
         // Wyznaczenie docelowej prêdkoœci
-        Vector3 targetVelocity = isoDir * moveSpeed;
+        Vector3 targetVelocity = inputDir * moveSpeed;
         velocity = Vector3.Lerp(velocity, targetVelocity, Time.fixedDeltaTime * (inputDir.magnitude > 0 ? acceleration : deceleration));
 
         // Ruch

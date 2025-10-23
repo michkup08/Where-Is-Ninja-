@@ -359,6 +359,8 @@
 "Assets/BudowanieSceny/LowPolyDungeon/Demo Scenes/MouseCamLook.cs"
 "Assets/BudowanieSceny/LowPolyDungeon/Demo Scenes/PlayerMovement.cs"
 "Assets/BudowanieSceny/LowPolyDungeon/Demo Scenes/ScreenshotMaker.cs"
+"Assets/CheckForPlayer.cs"
+"Assets/EnemyController.cs"
 "Assets/GameManager.cs"
 "Assets/ManagerGame.cs"
 "Assets/scripts/AttacksManager.cs"
