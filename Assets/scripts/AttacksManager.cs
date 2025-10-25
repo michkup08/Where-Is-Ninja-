@@ -7,19 +7,25 @@ public class BasicAttack
 {
     protected ParticleSystem particle;
     protected KeyCode keyCode;
+    protected Animator animator;
 
     public virtual void onUpdateFunc() 
     {
         if (Input.GetKeyDown(keyCode))
         {
+            animator.SetTrigger("Melee1");
+
             particle.Play();
+
+            //animator.ResetTrigger("Melee1");
         }
     }
 
-    public BasicAttack(ParticleSystem particle, KeyCode key)
+    public BasicAttack(ParticleSystem particle, KeyCode key, Animator animator)
     {
         this.particle = particle;
         this.keyCode = key;
+        this.animator = animator;
     }
 }
 
@@ -54,12 +60,13 @@ public class ContinuousAttack : BasicAttack
         }
     }
 
-    public ContinuousAttack(ParticleSystem particle, KeyCode key) : base(particle, key) {}
+    public ContinuousAttack(ParticleSystem particle, KeyCode key, Animator animator)
+        : base(particle, key, animator) { }
 }
 
 public class AttacksManager : MonoBehaviour 
 {
-    private string[] continousAttacks = { "Fire" };
+    private string[] continuousAttacks = { "Fire" };
 
     [Header("Available Particles")]
     public List<ParticleSystem> availableAttacks = new List<ParticleSystem>();
@@ -76,6 +83,8 @@ public class AttacksManager : MonoBehaviour
     BasicAttack additionalAttack2;
 
     public ManagerGame gameManager;
+
+    public Animator animator;
 
     void Start()
     {
@@ -99,10 +108,10 @@ public class AttacksManager : MonoBehaviour
 
     public void ApplySelectedAttacks()
     {
-        leftClickAttack = continousAttacks.Contains(leftAttackParticle.name) ? new ContinuousAttack(leftAttackParticle, KeyCode.Mouse0) : new BasicAttack(leftAttackParticle, KeyCode.Mouse0);
-        rightClickAttack = continousAttacks.Contains(rightAttackParticle.name) ? new ContinuousAttack(rightAttackParticle, KeyCode.Mouse1) : new BasicAttack(rightAttackParticle, KeyCode.Mouse1);
-        additionalAttack1 = continousAttacks.Contains(add1AttackParticle.name) ? new ContinuousAttack(add1AttackParticle, KeyCode.Mouse4) : new BasicAttack(add1AttackParticle, KeyCode.Mouse4);
-        additionalAttack2 = continousAttacks.Contains(add2AttackParticle.name) ? new ContinuousAttack(add2AttackParticle, KeyCode.Mouse3) : new BasicAttack(add2AttackParticle, KeyCode.Mouse3);
+        leftClickAttack = continuousAttacks.Contains(leftAttackParticle.name) ? new ContinuousAttack(leftAttackParticle, KeyCode.Mouse0, animator) : new BasicAttack(leftAttackParticle, KeyCode.Mouse0, animator);
+        rightClickAttack = continuousAttacks.Contains(rightAttackParticle.name) ? new ContinuousAttack(rightAttackParticle, KeyCode.Mouse1, animator) : new BasicAttack(rightAttackParticle, KeyCode.Mouse1, animator);
+        additionalAttack1 = continuousAttacks.Contains(add1AttackParticle.name) ? new ContinuousAttack(add1AttackParticle, KeyCode.Mouse4, animator) : new BasicAttack(add1AttackParticle, KeyCode.Mouse4, animator);
+        additionalAttack2 = continuousAttacks.Contains(add2AttackParticle.name) ? new ContinuousAttack(add2AttackParticle, KeyCode.Mouse3, animator) : new BasicAttack(add2AttackParticle, KeyCode.Mouse3, animator);
     }
 
     void RotateToMouse()

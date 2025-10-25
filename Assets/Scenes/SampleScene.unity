@@ -1178,6 +1178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2082153958 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8140095244732588134, guid: 40104f13c12700940880c1145730be63, type: 3}
+  m_PrefabInstance: {fileID: 1304004581533000056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2133370658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,6 +1283,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 991850480890193702, guid: 40104f13c12700940880c1145730be63, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2082153958}
+    - target: {fileID: 991850480890193702, guid: 40104f13c12700940880c1145730be63, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1966444698}
@@ -1328,6 +1337,18 @@ PrefabInstance:
     - target: {fileID: 2173305014385603262, guid: 40104f13c12700940880c1145730be63, type: 3}
       propertyPath: m_Name
       value: Knight D Pelegrini
+      objectReference: {fileID: 0}
+    - target: {fileID: 8140095244732588134, guid: 40104f13c12700940880c1145730be63, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 80bb6d1ec8fef63498a95c9ceec1b452, type: 3}
+    - target: {fileID: 8140095244732588134, guid: 40104f13c12700940880c1145730be63, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c7bdb935e43cf064a949e9f5e4b280eb, type: 2}
+    - target: {fileID: 8140095244732588134, guid: 40104f13c12700940880c1145730be63, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8421109182261255560, guid: 40104f13c12700940880c1145730be63, type: 3}
       propertyPath: TriggerModule.primitives.Array.data[0]
