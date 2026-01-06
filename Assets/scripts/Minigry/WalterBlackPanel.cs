@@ -9,7 +9,11 @@ public class WalterBlackPanel : MonoBehaviour
 
     [Header("Minigry")]
     public MemoryManager memoryMinigame;
-    public SpamManager spamMinigame;     // <--- NOWE GNIAZDKO
+    public SpamManager spamMinigame;
+    public LaneDodgeManager laneDodgeMinigame;   // (3 pasy)
+
+    [Header("Meta info UI")]
+    public Text laneBonusText; // w panelu UI dodaj Text o nazwie "LaneBonusText" albo podepnij rêcznie
 
     private bool isOpen = false;
     private AttacksManager attacksManager;
@@ -19,33 +23,50 @@ public class WalterBlackPanel : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        attacksManager = FindObjectOfType<AttacksManager>();
+        attacksManager = FindObjectOfType<AttacksManager>(true);
 
         if (menuPanel != null)
         {
             menuPanel.SetActive(false);
 
+            // Auto-find tekstu (¿eby nie trzeba by³o podpinaæ w Inspectorze)
+            if (laneBonusText == null)
+            {
+                Transform t = menuPanel.transform.Find("LaneBonusText");
+                if (t != null) laneBonusText = t.GetComponent<Text>();
+            }
+
             // Back
             Transform backBtnTr = menuPanel.transform.Find("Back_BTN");
-            if (backBtnTr != null) backBtnTr.GetComponent<Button>().onClick.AddListener(ResumeGameButton);
+            if (backBtnTr != null)
+                backBtnTr.GetComponent<Button>().onClick.AddListener(ResumeGameButton);
 
             // Bron 1 -> Memory
             Transform bron1Tr = menuPanel.transform.Find("Bron1_BTN");
             if (bron1Tr != null)
             {
-                bron1Tr.GetComponent<Button>().onClick.RemoveAllListeners();
-                bron1Tr.GetComponent<Button>().onClick.AddListener(UruchomMemory);
+                Button btn = bron1Tr.GetComponent<Button>();
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(UruchomMemory);
             }
 
-            // Bron 2 -> Spam Game (NOWOŒÆ)
+            // Bron 2 -> Spam
             Transform bron2Tr = menuPanel.transform.Find("Bron2_BTN");
             if (bron2Tr != null)
             {
-                bron2Tr.GetComponent<Button>().onClick.RemoveAllListeners();
-                bron2Tr.GetComponent<Button>().onClick.AddListener(UruchomSpam);
+                Button btn = bron2Tr.GetComponent<Button>();
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(UruchomSpam);
             }
 
-            SetupWeaponButton("Bron3_BTN", 3);
+            // Bron 3 -> Lane Dodge (3 pasy)
+            Transform bron3Tr = menuPanel.transform.Find("Bron3_BTN");
+            if (bron3Tr != null)
+            {
+                Button btn = bron3Tr.GetComponent<Button>();
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(UruchomLaneDodge);
+            }
         }
 
         if (menuCanvasGroup != null)
@@ -63,14 +84,19 @@ public class WalterBlackPanel : MonoBehaviour
         else Debug.LogError("Brak przypisanego MemoryManager!");
     }
 
-    // --- NOWA FUNKCJA ---
     public void UruchomSpam()
     {
         HideWalterUI();
         if (spamMinigame != null) spamMinigame.OpenSpamGame();
         else Debug.LogError("Brak przypisanego SpamManager!");
     }
-    // --------------------
+
+    public void UruchomLaneDodge()
+    {
+        HideWalterUI();
+        if (laneDodgeMinigame != null) laneDodgeMinigame.OpenLaneDodgeGame();
+        else Debug.LogError("Brak przypisanego LaneDodgeManager!");
+    }
 
     private void HideWalterUI()
     {
@@ -80,19 +106,7 @@ public class WalterBlackPanel : MonoBehaviour
             menuCanvasGroup.interactable = false;
             menuCanvasGroup.blocksRaycasts = false;
         }
-        menuPanel.SetActive(false);
-    }
-
-    void SetupWeaponButton(string btnName, int weaponIndex)
-    {
-        Transform btnTr = menuPanel.transform.Find(btnName);
-        if (btnTr != null)
-        {
-            Button btn = btnTr.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => Debug.Log("Wybrano broñ numer: " + weaponIndex));
-            btn.onClick.AddListener(ResumeGameButton);
-        }
+        if (menuPanel != null) menuPanel.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,6 +118,7 @@ public class WalterBlackPanel : MonoBehaviour
     public void OpenMenu(bool pauseTime)
     {
         if (menuPanel == null) return;
+
         menuPanel.SetActive(true);
         if (pauseTime) Time.timeScale = 0f;
         isOpen = true;
@@ -115,13 +130,36 @@ public class WalterBlackPanel : MonoBehaviour
             menuCanvasGroup.blocksRaycasts = true;
         }
 
+        // ? tutaj odœwie¿amy bonus i tekst w panelu
+        RefreshLaneBonusUIAndApply();
+
         if (attacksManager != null)
         {
             attacksManager.enabled = false;
             attacksActive = false;
         }
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    private void RefreshLaneBonusUIAndApply()
+    {
+        // Upewnij siê, ¿e mamy aktualny AttacksManager (czasem bywa wy³¹czony)
+        if (attacksManager == null)
+            attacksManager = FindObjectOfType<AttacksManager>(true);
+
+        if (attacksManager == null)
+        {
+            if (laneBonusText != null)
+                laneBonusText.text = "LaneDodge: brak AttacksManager";
+            return;
+        }
+
+        // Zaktualizuj info
+        if (laneBonusText != null)
+        {
+        }
     }
 
     public void ResumeGameButton()
@@ -129,6 +167,7 @@ public class WalterBlackPanel : MonoBehaviour
         Time.timeScale = 1f;
         HideWalterUI();
         isOpen = false;
+
         if (attacksManager != null && !attacksActive)
         {
             attacksManager.enabled = true;
