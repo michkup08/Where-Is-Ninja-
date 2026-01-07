@@ -12,6 +12,9 @@ public class MakeDamage : MonoBehaviour
     private List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
     public LayerMask layer;
 
+    public bool isMultiplayed = false;
+    public LevelManager levelManager;
+
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
@@ -32,6 +35,7 @@ public class MakeDamage : MonoBehaviour
                 if (hit.CompareTag(attackedTag))
                 {
                     EnemyLife hitted = hit.GetComponent<EnemyLife>();
+                    float realDamage = (levelManager.highestLevelLaneDodge * 0.01f + 1f) * damage;
                     if (hitted != null)
                         hitted.takeDamage(damage);
                 }

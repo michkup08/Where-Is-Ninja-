@@ -14,6 +14,8 @@ public class PlayerLife : LifeSystem
     private VideoPlayer videoPlayer;
     private AudioSource audioSource;
 
+    private LevelManager levelManager;
+
     private void Awake()
     {
         hp = 150;
@@ -37,6 +39,11 @@ public class PlayerLife : LifeSystem
         if (!isAlive() && !isDead)
         {
             StartCoroutine(DieAndRestart());
+        }
+
+        if (hp > maxhp)
+        {
+            maxhp = hp;
         }
     }
 

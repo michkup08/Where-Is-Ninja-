@@ -8,6 +8,9 @@ public class MakeDamageCollision : MonoBehaviour
     public float pushForce = 5f;
     public string attackedTag = "Enemy";
 
+    public bool isMultiplayed = false;
+    public LevelManager levelManager;
+
     void OnParticleCollision(GameObject other)
     {
         if (other.CompareTag(attackedTag))
@@ -16,6 +19,7 @@ public class MakeDamageCollision : MonoBehaviour
             EnemyLife hitted = other.GetComponent<EnemyLife>();
             if (hitted != null)
             {
+                float realDamage = (levelManager.highestLevelLaneDodge * 0.01f + 1f) * damage;
                 hitted.takeDamage(damage);
             }
 

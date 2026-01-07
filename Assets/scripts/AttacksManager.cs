@@ -79,7 +79,7 @@ public class BasicAttack
 
         if (Input.GetKeyDown(keyCode))
         {
-            manager.attackCooldowns[keyCode] = cooldown;
+            manager.attackCooldowns[keyCode] = cooldown * (1 - 0.01f*manager.levelManager.highestLevelSpam);
             animator.SetTrigger("Melee1");
             particle?.Play();
 
@@ -105,7 +105,7 @@ public class ContinuousAttack : BasicAttack
     {
         if(Input.GetKeyUp(keyCode))
         {
-            manager.attackCooldowns[keyCode] = cooldown;
+            manager.attackCooldowns[keyCode] = cooldown * (1 - 0.01f * manager.levelManager.highestLevelSpam);
             animator.SetBool("CastingContinuousSpell1", false);
             particle.Stop();
         }
@@ -170,7 +170,7 @@ public class RangedAttack : BasicAttack
 
         if (Input.GetKeyDown(keyCode))
         {
-            manager.attackCooldowns[keyCode] = cooldown;
+            manager.attackCooldowns[keyCode] = cooldown * (1 - 0.01f * manager.levelManager.highestLevelSpam);
             animator.SetTrigger("CrossbowShoot");
 
             if (projectilePrefab != null && firePoint != null)
@@ -323,6 +323,8 @@ public class AttacksManager : MonoBehaviour
     [Tooltip("D³ugoœæ 'pulsu' dla continuous w trybie Voice (sekundy, realtime)")]
     public float voiceContinuousDuration = 0.25f;
 
+    public LevelManager levelManager;
+
     void Awake()
     {
         LoadAttackConfigs();
@@ -451,6 +453,7 @@ public class AttacksManager : MonoBehaviour
         {
             case "continuous":
                 return new ContinuousAttack(GetParticleIfExists(attackObject), key, animator, this, attackName, data.cooldown);
+                //return new ContinuousAttack(GetParticleIfExists(attackObject), key, animator, this, attackName, data.cooldown * (1 - levelManager.highestLevelLaneDodge * 0.01f));
 
             case "instance":
                 return new BuildCast(key, animator, GetGameObjectIfExists(attackObject), this, attackName, data.cooldown);
@@ -535,5 +538,11 @@ public class AttacksManager : MonoBehaviour
         atk.StartCast();
         yield return new WaitForSecondsRealtime(voiceContinuousDuration);
         atk.StopCast(true);
+    }
+
+    private float CooldownMultiplier()
+    {
+        if (levelManager == null) return 1f;
+        return Mathf.Max(0f, 1f - (levelManager.highestLevelLaneDodge * 0.01f));
     }
 }

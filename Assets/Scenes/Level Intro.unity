@@ -1638,6 +1638,7 @@ MonoBehaviour:
   memoryLevelText: {fileID: 826735726}
   spamLevelText: {fileID: 1134792998}
   laneDodgeLevelText: {fileID: 85895904}
+  playerLife: {fileID: 1588572647}
 --- !u!1001 &312761270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4328,9 +4329,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 404402346315391615, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 312204310}
+    - target: {fileID: 404402346315391615, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: isMultiplayed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1948851177402585271, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: damage
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970504026516619889, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 312204310}
+    - target: {fileID: 1970504026516619889, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: isMultiplayed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2675355440075594179, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: m_RootOrder
@@ -4393,6 +4410,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1138271040}
     - target: {fileID: 3707367903346688939, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 312204310}
+    - target: {fileID: 3707367903346688939, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: add1AttackIcon
       value: 
       objectReference: {fileID: 1541744216}
@@ -4446,6 +4467,22 @@ PrefabInstance:
       objectReference: {fileID: 969214010}
     - target: {fileID: 4878083377422382152, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353426085770646415, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 312204310}
+    - target: {fileID: 6353426085770646415, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: isMultiplayed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500952766516739983, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 312204310}
+    - target: {fileID: 6500952766516739983, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: isMultiplayed
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8417257540959652276, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
@@ -7102,6 +7139,17 @@ MonoBehaviour:
   player: {fileID: 924727273}
   mic: {fileID: 1588572642}
   toggleKey: 118
+--- !u!114 &1588572647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4361591498626659267, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+  m_PrefabInstance: {fileID: 924727271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924727272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26097db70dd6a44d8d0a79ab02bc9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1627793801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8702035252243360985, guid: 01758e662295c9347b35b7bdee71f5b4, type: 3}
