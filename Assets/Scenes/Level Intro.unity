@@ -4337,6 +4337,14 @@ PrefabInstance:
       propertyPath: isMultiplayed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 815376711401101703, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 312204310}
+    - target: {fileID: 815376711401101703, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: isMultiplayed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1948851177402585271, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: damage
       value: 50
@@ -4347,7 +4355,7 @@ PrefabInstance:
       objectReference: {fileID: 312204310}
     - target: {fileID: 1970504026516619889, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: isMultiplayed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2675355440075594179, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: m_RootOrder
@@ -4469,6 +4477,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6328212212763329917, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 312204310}
+    - target: {fileID: 6328212212763329917, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: isMultiplayed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6353426085770646415, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: levelManager
       value: 
@@ -4478,12 +4494,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6500952766516739983, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500952766516739983, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 312204310}
     - target: {fileID: 6500952766516739983, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: isMultiplayed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8417257540959652276, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: controlMode

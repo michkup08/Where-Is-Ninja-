@@ -6785,7 +6785,7 @@ PrefabInstance:
       objectReference: {fileID: 1585277806}
     - target: {fileID: 1970504026516619889, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: isMultiplayed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2675355440075594179, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: m_RootOrder
@@ -6913,6 +6913,14 @@ PrefabInstance:
       objectReference: {fileID: 969214010}
     - target: {fileID: 4878083377422382152, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328212212763329917, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1585277806}
+    - target: {fileID: 6328212212763329917, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
+      propertyPath: isMultiplayed
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6353426085770646415, guid: 0ce5daef6bf46c047af480e607f192b0, type: 3}
