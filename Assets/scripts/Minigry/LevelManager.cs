@@ -45,12 +45,14 @@ public class LevelManager : MonoBehaviour
         highestLevelSpam = PlayerPrefs.GetInt("HighestSpamLevel", highestLevelSpam);
         highestLevelLaneDodge = PlayerPrefs.GetInt("HighestLaneDodgeLevel", highestLevelLaneDodge);
 
-        playerLife.hp = 150 + (highestLevelMemory * 1.5f);
+        if (playerLife != null)
+            playerLife.hp = 150 + (highestLevelMemory * 1.5f);
     }
 
     private void SaveHighestLevels()
     {
-        playerLife.hp = 150 + (highestLevelMemory * 1.5f);
+        if (playerLife != null)
+            playerLife.hp = 150 + (highestLevelMemory * 1.5f);
         PlayerPrefs.SetInt("HighestMemoryLevel", highestLevelMemory);
         PlayerPrefs.SetInt("HighestSpamLevel", highestLevelSpam);
         PlayerPrefs.SetInt("HighestLaneDodgeLevel", highestLevelLaneDodge);
