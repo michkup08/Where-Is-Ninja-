@@ -6,14 +6,17 @@ public class WalterBlackPanel : MonoBehaviour
     [Header("UI References")]
     public GameObject menuPanel;
     public CanvasGroup menuCanvasGroup;
+    public Text memoryLevelText;      
+    public Text spamLevelText;        
+    public Text laneDodgeLevelText;   
 
     [Header("Minigry")]
     public MemoryManager memoryMinigame;
     public SpamManager spamMinigame;
-    public LaneDodgeManager laneDodgeMinigame;   // (3 pasy)
+    public LaneDodgeManager laneDodgeMinigame;   
 
     [Header("Meta info UI")]
-    public Text laneBonusText; // w panelu UI dodaj Text o nazwie "LaneBonusText" albo podepnij rêcznie
+    public Text laneBonusText; 
 
     private bool isOpen = false;
     private AttacksManager attacksManager;
@@ -129,8 +132,12 @@ public class WalterBlackPanel : MonoBehaviour
             menuCanvasGroup.interactable = true;
             menuCanvasGroup.blocksRaycasts = true;
         }
+        
+        if (LevelManager.instance != null)
+        {
+            LevelManager.instance.DisplayHighestLevels();
+        }
 
-        // ? tutaj odœwie¿amy bonus i tekst w panelu
         RefreshLaneBonusUIAndApply();
 
         if (attacksManager != null)

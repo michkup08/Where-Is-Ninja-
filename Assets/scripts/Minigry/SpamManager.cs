@@ -189,7 +189,10 @@ public class SpamManager : MonoBehaviour
         if (ResultText) ResultText.text = "Sukces!";
         StartCoroutine(FlashMeter(MeterGood, 0.5f));
         _level++;
-        // Zastąpiono Invoke korutyną (Invoke nie działa na pauzie)
+        if (LevelManager.instance != null)
+        {
+            LevelManager.instance.LevelUpSpam();
+        }
         StartCoroutine(WaitAndRestart(0.7f));
     }
 
