@@ -157,6 +157,11 @@ public class LaneDodgeManager : MonoBehaviour
         isGameOver = true;
         isRunning = false;
 
+        if (LevelManager.instance != null)
+        {
+            LevelManager.instance.UpdateLaneDodgeScore(score);
+        }
+
         if (pauseWorldTime) Time.timeScale = 0f;
 
         if (finalScoreText != null) finalScoreText.text = $"Wynik: {score}";

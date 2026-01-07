@@ -184,6 +184,10 @@ public class MemoryManager : MonoBehaviour
         _isPlaying = true;
         foreach (var t in Tiles) t.SetInteractable(false);
         Level++; UpdateHUD();
+        if (LevelManager.instance != null)
+        {
+            LevelManager.instance.LevelUpMemory();
+        }
         yield return StartCoroutine(FlashAll(SuccessColor, AllFlashTime, BaseColor));
         yield return new WaitForSecondsRealtime(AfterSuccessDelay);
         GenerateNextStep();

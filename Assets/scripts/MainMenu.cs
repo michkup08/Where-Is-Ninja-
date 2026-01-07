@@ -7,6 +7,11 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
+        if (LevelManager.instance != null)
+        {
+            LevelManager.instance.ResetLevels();
+        }
+
         SceneManager.LoadScene("Level Intro");
     }
 
